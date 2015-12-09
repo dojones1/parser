@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+    <Folder>
+        <name>WIMAX Maps</name>
+        <open>1</open>
+        <NetworkLink>
+            <name>Antennae</name>
+            <open>0</open>
+            <Url>
+                <href>http://ecweb.ecid.cig.mot.com/gsd/utils/parser/wimax_rssi/wimax_antennae.kmz</href>
+                <refreshMode>onInterval</refreshMode>
+                <refreshInterval>600</refreshInterval>
+                <refreshVisibility>0</refreshVisibility>
+            </Url>
+        </NetworkLink>
+        <NetworkLink>
+            <name>Models</name>
+            <open>0</open>
+            <Url>
+                <href>http://ecweb.ecid.cig.mot.com/gsd/utils/parser/wimax_rssi/models.kmz</href>
+                <refreshMode>onInterval</refreshMode>
+                <refreshInterval>600</refreshInterval>
+                <refreshVisibility>0</refreshVisibility>
+            </Url>
+        </NetworkLink>
+    </Folder>
+</kml>

@@ -1,0 +1,185 @@
+<HTML>
+<HEAD>
+<TITLE>parser.pm</TITLE>
+<LINK REV="made" HREF="mailto:donald.starquality@gmail.com">
+</HEAD>
+
+<BODY>
+
+<!-- INDEX BEGIN -->
+
+<UL>
+
+	<LI><A HREF="#DESCRIPTION">DESCRIPTION</A>
+	<LI><A HREF="#OVERVIEW">OVERVIEW</A>
+	<LI><A HREF="#NAME">NAME</A>
+	<LI><A HREF="#SYNOPSIS">SYNOPSIS</A>
+	<LI><A HREF="#GLOBALS">GLOBALS</A>
+	<LI><A HREF="#REPORTING_BUGS">REPORTING BUGS</A>
+	<LI><A HREF="#AUTHOR">AUTHOR</A>
+	<LI><A HREF="#USE_EXAMPLES">USE EXAMPLES</A>
+	<LI><A HREF="#CREDITS">CREDITS</A>
+	<LI><A HREF="#COPYRIGHT">COPYRIGHT</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="DESCRIPTION">DESCRIPTION</A></H1>
+<P>
+<CODE>parser</CODE> is a Perl module which provides helper functions for automated parsing of
+debug logs, and conversion to a standard XML format. This standard XML
+format can then be output via XSL as one of many other formats: e.g. HTML
+tabular format, SVG-based Message Sequence Chart
+
+<P>
+<HR>
+<H1><A NAME="OVERVIEW">OVERVIEW</A></H1>
+<P>
+The parser provides an extensible mechanism for a single parser to be
+invoked which can process multiple input file formats and provide a
+standard report.
+
+<P>
+<HR>
+<H1><A NAME="NAME">NAME</A></H1>
+<P>
+parser.pm - Parser helper functions
+
+<P>
+<HR>
+<H1><A NAME="SYNOPSIS">SYNOPSIS</A></H1>
+<P>
+<PRE>    use parser;
+</PRE>
+<P>
+<PRE>    parser_create_event;
+</PRE>
+<P>
+<PRE>    parser_record_event;
+    
+    parser_rm_log_ext;
+</PRE>
+<P>
+<PRE>    parser_conv_xml_via_xsl;
+    
+    parser_output_xml()
+</PRE>
+<P>
+<HR>
+<H1><A NAME="GLOBALS">GLOBALS</A></H1>
+<P>
+These are global variables accessible to the test scripts
+
+<DL>
+<DT><STRONG><A NAME="item__PARSER_CONFIG">$PARSER_CONFIG</A></STRONG><DD>
+<P>
+This hash contains the configuration information read in from
+parser_config.xml
+
+</DL>
+<DL>
+<DT><STRONG><A NAME="item_parser_create_event">parser_create_event (EVENT HASH, LINE, DATE, SEV, DESCRIPTION)</A></STRONG><DD>
+<P>
+This populates the default fields of the provided event hash with the data
+provided
+
+<P>
+<STRONG>EVENT HASH</STRONG> is the hash into which the event will be written.
+
+<P>
+<STRONG>LINE</STRONG> is the Line number for the event.
+
+<P>
+<STRONG>DATE</STRONG> is a timestamp for the event.
+
+<P>
+<STRONG>SEV</STRONG> is the severity of the event - This should match one of the categories
+above.
+
+<P>
+<STRONG>DESCRIPTION</STRONG> is the a short description of the event
+
+<DT><STRONG><A NAME="item_parser_record_event">parser_record_event (INDEX, EVENT HASH)</A></STRONG><DD>
+<P>
+This logs the event hash provided into the master EVENT HASH, indexed by
+the provided INDEX. This should be called once the event has been fully
+populated.
+
+<P>
+<STRONG>INDEX</STRONG> is a Unique Index value, be it line number, timestamp. This provides the
+principal means of sorting the data.
+
+<P>
+<STRONG>EVENT HASH</STRONG> is the event which will be added to the Master Event HASH
+
+<DT><STRONG><A NAME="item_parser_rm_file_ext">parser_rm_file_ext (LOGEXT, LOGFILE)</A></STRONG><DD>
+<P>
+This removes the current extension from the file and returns the truncated
+result
+
+<P>
+<STRONG>LOGEXT</STRONG> is the log extension to be removed.
+
+<P>
+<STRONG>LOGFILE</STRONG> is the file which explains how the XML data can be transformed
+
+<DT><STRONG><A NAME="item_parser_conv_xml_via_xsl">parser_conv_xml_via_xsl (XMLFILE, XSLFILE, EXT)</A></STRONG><DD>
+<P>
+This takes the provided input XML file, applies the provided XSL file and
+writes the output to a file with the supplied Extension
+
+<P>
+<STRONG>XMLFILE</STRONG> is the XML file containing the data to be translated
+
+<P>
+<STRONG>XSLFILE</STRONG> is the file which explains how the XML data can be transformed
+
+<P>
+<STRONG>EXT</STRONG> Extension to be used for the destination file to be used in place of the
+source files XML extension.
+
+<DT><STRONG><A NAME="item_parser_output_xml">parser_output_xml (LOGFILE, CONFIG, EVENTS)</A></STRONG><DD>
+<P>
+This outputs the Config and Event hash tables into a single XML Log file.
+This can then be parsed by the XSL files for rendering the appropriate
+information.
+
+<P>
+<STRONG>LOGFILE</STRONG> is the XML file to which the data will be written
+
+<P>
+<STRONG>CONFIG</STRONG> Hash of Config data which is specific to the log type being parsed.
+
+<P>
+<STRONG>EVENTS</STRONG> Hash of events which have been produced by parsing the log data.
+
+<H1><A NAME="REPORTING_BUGS">REPORTING BUGS</A></H1>
+<P>
+When reporting bugs/problems please include as much information as
+possible. It may be difficult for me to reproduce the problem as almost
+every setup is different.
+
+<P>
+A small logfile which yields the problem will probably be of help, together
+with the execution output. 
+
+<H1><A NAME="AUTHOR">AUTHOR</A></H1>
+<P>
+Donald Jones &lt;<A
+HREF="mailto:donald.starquality@gmail.com">donald.starquality@gmail.com</A>&gt;
+
+<H1><A NAME="USE_EXAMPLES">USE EXAMPLES</A></H1>
+<P>
+For an example of the use of parser see
+
+<DL>
+<DT><STRONG><A NAME="sip_msg_parser">sip_msg_parser.pl</A></STRONG><DD>
+</DL>
+<H1><A NAME="CREDITS">CREDITS</A></H1>
+<P>
+Donald Jones &lt;<A
+HREF="mailto:donald.starquality@gmail.com">donald.starquality@gmail.com</A>&gt; 
+</BODY>
+
+</HTML>

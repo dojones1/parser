@@ -1,0 +1,89 @@
+<!doctype html PUBLIC "">
+<html>
+
+<head>
+    <title>Parser Utility</title>
+</head>
+
+<body>
+
+<table cellspacing="0" height="100%" frame="void" width="100%" cellpadding="0">
+    <tr height="50" bgcolor="#1030ff">
+        <td colspan="2">
+        <table cellspacing="0" bordercolor="#000000" width="100%" frame="below" cellpadding="0">
+            <tr valign="top">
+                <td align="left">
+                    <img align="left" src="images/motologo.gif" />
+                </td>
+                <td align="right">
+                    <img align="right" src="images/slogo.gif" />
+                </td>
+            </tr>
+        </table>
+    </tr>
+    <tr valign="top" align="center">
+        <td bgcolor="#f0f0f0" width="100%">
+            <br>
+            <h1 align="center"><font color="darkblue">Welcome to the Log Parser Utility webpage.</font></h1>
+            <hr>
+            <form method="post" action="/cgi-bin/parser.cgi">
+                <table align="center" width="70%" border="1">
+                    <tr>
+                        <td align="left">&nbsp; Enter the filename of the log to be parsed:</td>
+                        <td align="center">
+                            <input type="text" size="52" value="logfile">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">&nbsp; Enter your email address to receive the results:</td>
+                        <td align="center">
+                            <input type="text" size="52" value="email">
+                        </td>
+                    </tr>
+                </table>
+                <h2 align="center">Select the Log Type to be parsed</h2>
+                <table align="center" width="70%" border="1">
+                    <tr>
+                        <td>
+                            <input type="radio" name="parser" value="bsc_mmi_filter" checked>
+                        </td>
+                        <td align="left">&nbsp; BSC MMI Filter</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="parser" value="bss_gather_no_audio">
+                        </td>
+                        <td align="left">&nbsp; BSS Gather No Audio</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="parser" value="axpt_sproc_iir">
+                        </td>
+                        <td align="left">&nbsp; AXPT SPROC IIR</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="parser" value="bsc_alarm_state">
+                        </td>
+                        <td align="left">&nbsp; BSC ALARM STATE</td>
+                    </tr>
+                </table>
+                <br>
+                <input type="submit" name="Parse" value="Submit" />
+                <input type="reset"  name=".reset" />
+                <br>
+            </form>
+            <hr>
+        </td>
+    </tr>
+    <tr align="center" bgcolor="#f0f0f0" width="100%">
+        <td colspan="2">
+            <a href="mailto:donald.starquality@gmail.com?subject=Website&amp">Contact the Webmaster</a>
+            <br>
+        </td>
+    </tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+BODY {font-family: arial, geneva;font-size: 10px}
+#about {text-align: center;font-weight: bolder}
+.highlight {font-weight: bold; valign: top}
+#abstract {margin-left: 3em; margin-right: 3em}
+#article {border-top: 1px gray solid}
+.pullquote {float: right; font-weight: bold;
+    border: 1px lightgrey solid; width: 10em; clear: both}
+p{margin:0 0 0.7em 0;padding:0;}
+p.start {text-indent: 0pt}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{margin:0 0 0.7em 0;padding:0;color:#263D2A;}
+h1{font-size:20px; border-bottom: 3px solid red; }
+h2{font-size:20px;}
+h3{font-size:16px; border-bottom: 2px solid blue; }
+h4{font-size:16px;}
+h5{font-size:14px;}
+h6{font-size:12px;}
+dt{font-weight:bold;}
+
+caption{padding-bottom:10px;text-align:left;font-weight:bold;}
+
+#table{border:1px solid #97ACBD;margin:0 0 20px 0;paddding:5px;width:100%;}
+table.tbl1{border:1px solid #97ACBD;margin:0 0 20px 0;paddding:5px;width:100%;font-size:12px;}
+
+td{text-align:center;border-width:1px 0px 0px 0px;border-color:#97ACBD;border-style:solid;padding:0px;margin:0;}
+
+thead th{text-align:center;border-left:0px;border-top:0px;padding:0px;}
+
+tbody td{text-align:center;border-left:0px;border-right:1px solid #97ACBD;border-top:0px;border-bottom:1px solid #97ACBD;padding:0px;}
+.alignleft{text-align:left;border-left:0px;border-right:1px solid #97ACBD;border-top:0px;border-bottom:1px solid #97ACBD;padding:0px;}
+
+tbody th{padding:0px;text-align:left;}
+.lead{text-align:left;border:0;}
+.totals{background:#C5D0DA;}
+
+th{text-align:center;border-left:0px solid #97ACBD;border-right:1px solid #97ACBD;border-top:1px solid #97ACBD;border-bottom:1px solid #97ACBD;}
+th.odd{background-color:#ECECCC;}
+th.oddleft{background-color:#ECECCC;text-align:left;}
+tr{border-bottom:1px solid #97ACBD;}
+.odd{background:#ECEFFF;}
+.oddleft{background:#ECEFFF;text-align:left;}
+
+table.tbl2{border:0px solid #97ACBD;margin:0 0 0px 0;paddding:0px;width:100%;font-size:12px;}
+tbody td2{text-align:left;border-left:0px solid #97ACBD;padding:0;border-right:0px hidden #97ACBD;padding:0;border-bottom:0px solid #97ACBD;border-top:0px;padding:0px;}
+td.td2{text-align:left;border-left:0px solid #97ACBD;padding:0;border-right:0px hidden #97ACBD;padding:0;border-bottom:0px solid #97ACBD;border-top:0px;padding:0px;}
+tr.tr2{border-bottom:0px hidden #97ACBD;}
+
+table.tbl3{border:0px solid #97ACBD;margin:0 0 0px 0;paddding:0px;width:100%;font-size:12px;}
+tbody td3{text-align:right;border-left:0px solid #97ACBD;padding:0;border-right:0px hidden #97ACBD;padding:0;border-bottom:0px solid #97ACBD;border-top:0px;padding:0px;}
+td.td3{text-align:right;border-left:0px solid #97ACBD;padding:0;border-right:0px hidden #97ACBD;padding:0;border-bottom:0px solid #97ACBD;border-top:0px;padding:0px;}
+tr.tr3{border-bottom:0px hidden #97ACBD;}
+
+
+#outputlink {font-size: 8pt;}
+#outputlink ul
+{
+list-style-type: none;
+}
+
+#outputlink li
+{
+display: inline;
+list-style-type: none;
+}
+
+#outputlink li a
+{
+color: #FFF;
+background-color: #69C;
+width: 7em;
+padding: 3px 0px 3px 0px;
+text-align: center;
+text-decoration: none;
+border-bottom: 1px solid #fff;
+font-weight: normal;
+}
+#outputlink li a:hover {background-color: blue}
+#outputlink li a:active {background-color: darkblue}
+
+

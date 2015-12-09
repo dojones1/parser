@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parser_config>
+    <output_type name="msc">
+        <output xsl="common\msc\xml2indexhtml.xsl" ext="index.html">
+          <file name="debug_ref.css"/>
+        </output>
+        <output xsl="common\msc\xml2errorshtml.xsl" ext="errors.html" title="Errors"/>
+        <output xsl="common\msc\xml2tablehtml.xsl" ext="table.html" title="Table">
+          <file name="debug_ref.css"/>
+        </output>
+        <output xsl="common\msc\xml2topframehtml.xsl" ext="topframe.html">
+          <file name="debug_ref.css"/>
+        </output>
+        <output xsl="common\msc\xml2mschtml.xsl" ext="msc.html" title="MSC" split="">
+          <file name="debug_ref.css"/>
+        </output>
+        <output xsl="common\msc\xml2msc_hdr_svg.xsl" ext="hdr.svg" strip_xmlns="">
+          <file name="msc.css"/>
+          <file name="title.js"/>
+        </output>
+        <output xsl="common\msc\xml2msc_body_svg.xsl" ext="body.svg" split="" strip_xmlns="">
+          <file name="msc.css"/>
+          <file name="title.js"/>
+        </output>
+        <output xsl="common\msc\xml2msc_title_svg.xsl" ext="title.svg" strip_xmlns="">
+          <file name="msc.css"/>
+          <file name="title.js"/>
+        </output>
+        <output xsl="common\msc\xml2msc_row_svg.xsl" ext="row.svg" split="" strip_xmlns="">
+          <file name="msc.css"/>
+          <file name="title.js"/>
+        </output>
+    </output_type>
+  <parser name="sip_msg" ext="txt" pl="sip_msg_parser.pl" desc="Decodes SIP messages from Wireshark logs." sc_input_opts="-l" output_type="msc"/>
+  <parser name="wimax_rssi" ext="log" pl="wimax_rssi.pl" desc="Parses GPS and WIMAX data card logs to generate Google earth KML overlays for RSSI plots." sc_input_opts="-c" />
+</parser_config>
