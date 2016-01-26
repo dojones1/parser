@@ -13,32 +13,32 @@
 .fil1 {fill:#C4E5FA}
 .fil3 {fill:#FFFFFF}
 
-.loghead {font-family:Verdana;font-size:16;font-weight:bold}
+.loghead {font-family:Verdana;font-size:small;font-weight:bold}
 .oddrect {fill:lightgreen;stroke:black;stroke-width:1;opacity:0.2}
 .evenrect {fill:lightblue;stroke:black;stroke-width:1;opacity:0.2}
 
 .eventrect {fill:red;stroke:black;stroke-width:1;opacity:1.0}
 
-.eventtext {font-family:Verdana;font-size:8}
+.eventtext {font-family:Verdana;font-size:x-small}
 
 .staterect {fill:lightblue;stroke:black;stroke-width:1;opacity:1.0}
 
-.msghead {font-family:Verdana;font-size:8;font-weight:bold}
-.msgtext {font-family:Verdana;font-size:10}
+.msghead {font-family:Verdana;font-size:x-small;font-weight:bold}
+.msgtext {font-family:Verdana;font-size:x-small}
 .msgline {stroke:rgb(0,0,0);stroke-width:2}
 .msgarrow {fill:#000000;stroke:#000000;stroke-width:1}
 
 .noderect      {fill:lightgreen;stroke:black;stroke-width:2;opacity:1.0}
-.nodetext      {font-family:Verdana;font-size:14;font-weight:bold;text-align:center}
-.nodetextsmall {font-family:Verdana;font-size:8;font-weight:bold;text-align:center}
+.nodetext      {font-family:Verdana;font-size:small;font-weight:bold;text-align:center}
+.nodetextsmall {font-family:Verdana;font-size:x-small;font-weight:bold;text-align:center}
 .nodeline      {stroke:rgb(99,99,99);stroke-width:2}
 
 .siterect {fill:lightgreen;stroke:black;stroke-width:2;opacity:1.0}
-.sitetext {font-family:Verdana;font-size:14;font-weight:bold;text-align:center}
+.sitetext {font-family:Verdana;font-size:small;font-weight:bold;text-align:center}
 .siteline {stroke:rgb(99,99,99);stroke-width:2}
 
 .tdmrect {fill:purple;stroke:black;stroke-width:1;opacity:1.0}
-.tdmtext {font-family:Verdana;font-size:14;font-weight:bold;text-align:center}
+.tdmtext {font-family:Verdana;font-size:small;font-weight:bold;text-align:center}
 .tdmline {stroke:rgb(99,99,99);stroke-width:2}
 
 
