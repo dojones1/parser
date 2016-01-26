@@ -58,7 +58,7 @@
 		//	topdiv.document.parentWindow.status = "Too Narrow!!";
 		//	return;
 		//}
-		topdiv.document.parentWindow.status = "";
+		//topdiv.document.parentWindow.status = "";
 	
 		// Position top div and body div to right of row div 
 		topdiv.style.top     = titlediv.offsetTop;

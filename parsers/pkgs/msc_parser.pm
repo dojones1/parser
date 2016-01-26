@@ -512,6 +512,7 @@ sub handle_node_list()
         {
             print "...Read in file $parser_config_file OK\n" if $debug;
         }
+		# print Dumper $master_nodes;
         # $keyAtt = undef;
     }
 
@@ -557,7 +558,8 @@ sub msc_parser_get_duplicated_links($)
     my $found  = 0;
     my $output = "File,Duplicates,From,To\n";
 
-    # print Dumper %{$master_nodes->{'node'}};
+    #print "msc_parser_get_duplicated_links\n";
+	#print Dumper %{$master_nodes->{'node'}};
     foreach my $val( sort keys %{$master_nodes->{'node'}} )
     {
         if( exists( $master_nodes->{'node'}->{$val}->{'link'} ) )
@@ -629,7 +631,6 @@ sub msc_parser_build_config($)
 
         #print "Calling handle_node_list\n";
         handle_node_list();
-        #nodes_to_xml();
     }
     print "...Parsing for Nodes\n";
 
@@ -648,7 +649,7 @@ sub msc_parser_build_config($)
         inc_node_count($MSC_PARSER_EVENTS{'event'}->{$key}->{'node'});
     }
 
-    #print Dumper \%nodes;
+    print Dumper \%nodes if $debug;
 
     # delete non duplicated links
     foreach my $val ( keys %nodes )
@@ -656,7 +657,9 @@ sub msc_parser_build_config($)
         if( exists( $nodes{$val}->{'link'} ) )
         {
             my $dup = 0;
-            for( my $i = 0; $i <= $#{@{$nodes{$val}->{'link'}}}; $i++ )
+
+			my @links = @{$nodes{$val}->{'link'}};
+            for( my $i = 0; $i <= $#links; $i++ )
             {
                 if( exists($nodes{$val}->{'link'}[$i]->{'duplicates'}) )
                 {
@@ -670,16 +673,21 @@ sub msc_parser_build_config($)
         }
     }
 
-    #print Dumper \%nodes;
+    print Dumper \%nodes if $debug;
 
+	print "Master Nodes\n" if $debug;
+	print Dumper $master_nodes if $debug;
+	
     # Check for master nodes which do not feature in the node list
-    print "Checking for master nodes to delete\n";
+    print "Checking for master nodes to delete\n" if $debug;
     my $last_free_idx = 0;
     foreach my $master_node_val( sort keys %{$master_nodes->{'node'}} )
     {
         my $found_match = 0;
-        my $value = $master_nodes->{'node'}->{$master_node_val}->{'name'};
-        #print "Testing for $master_node_val:\"$value\" in nodes\n";
+
+        my $value = $master_nodes->{'node'}->{$master_node_val}->{'content'};
+		$master_nodes->{'node'}->{$master_node_val}->{'name'} = $value;
+        print "Testing for $master_node_val:\"$value\" in nodes\n" if $debug;
         if( exists($nodes{$value}) )
         {
             if( exists( $nodes{$value}->{'link'} ) )
@@ -712,9 +720,10 @@ sub msc_parser_build_config($)
         delete $master_nodes->{'node'}->{$master_node_val};
     }
 
-    #print nodes_to_xml();
+    print nodes_to_xml() if $debug;
 
     # Remove any spaces introduced into the master list.
+	print "Remove any spaces in master list\n" if $debug;
     my $gap_found = 0;
 
     unless( $gap_found )
@@ -723,12 +732,12 @@ sub msc_parser_build_config($)
         my $num_master_keys = scalar keys %{$master_nodes->{'node'}};
         foreach my $master_node_val ( sort{ $a <=> $b } keys %{$master_nodes->{'node'}} )
         {
-#           print "Testing Node: $master_node_val/$num_master_keys\n";
-#           print "Last_Free: $last_free_idx\n";
+           print "Testing Node: $master_node_val/$num_master_keys\n" if $debug;
+           print "Last_Free: $last_free_idx\n" if $debug;
             if( $master_node_val !~ /^$last_free_idx$/ )
             {
                 # Copying from $master_node_val to $last_free_idx
-#               print "Copying from $master_node_val to $last_free_idx\n";
+                print "Copying from $master_node_val to $last_free_idx\n" if $debug;
                 # Need to do a deep copy;
                 $master_nodes->{'node'}->{$last_free_idx} = $master_nodes->{'node'}->{$master_node_val};
                 delete $master_nodes->{'node'}->{$master_node_val};
@@ -738,16 +747,19 @@ sub msc_parser_build_config($)
         }
     }
 
+	print "Master Nodes\n" if $debug;
+	print Dumper $master_nodes if $debug;
+	
     # Look for nodes found which may not be in the initial master list
-    print "Checking for nodes to add\n";
+    print "Checking for nodes to add\n" if $debug;
     foreach my $nodekey ( sort keys %nodes )
     {
         my $node_in_master = 0;
-        #print "Testing for $nodekey in master_nodes\n";
+        print "Testing for $nodekey in master_nodes\n" if $debug;
         foreach my $master_node_val ( sort keys %{$master_nodes->{'node'}} )
         {
             my $value = $master_nodes->{'node'}->{$master_node_val}->{'name'};
-            #print "- Testing $master_node_val: $value\n";
+            print "- Testing $master_node_val: $value\n" if $debug;
             if( $value =~ /^$nodekey$/ )
             {
                 $node_in_master = 1;
@@ -756,10 +768,9 @@ sub msc_parser_build_config($)
             }
 
             # Need to test for possible alternate names
-            #print Dumper $master_nodes->{'node'}->{$master_node_val};
             my $altnames = $master_nodes->{'node'}->{$master_node_val}->{'altname'};
             next unless defined $altnames;
-            #print "- Testing Alternates\n";
+            print "- Testing Alternates\n" if $debug;
             foreach my $alt_value ( keys %{$altnames} )
             {
                 #print "- - Testing $master_node_val Altname: $alt_value\n";
@@ -794,9 +805,14 @@ sub msc_parser_gen_xml_ftr()
 {
     my $out;
 
-    #print Dumper \%MSC_PARSER_EVENTS;
     # Only output events if there are any
-    if( keys %{%MSC_PARSER_EVENTS->{'event'}} or keys %{%MSC_PARSER_EVENTS->{'ERROR'}} )
+	# print Dumper %MSC_PARSER_EVENTS{'event'};
+	my $evs = keys %MSC_PARSER_EVENTS{'event'};
+	#print Dumper %MSC_PARSER_EVENTS{'ERROR'};
+	# my $errors = keys %MSC_PARSER_EVENTS{'ERROR'};
+	my $errors = 0;
+	print "#evs: $evs #errors: $errors\n";
+    if( $evs or $errors)
     {
         $out = XMLout( \%MSC_PARSER_EVENTS,
                        NoAttr     => 0,          # Do not represent hash key/values as nested elements
@@ -866,9 +882,10 @@ my $id = 0;
 sub msc_parser_process_outputs($@)
 {
     my ($logfile, @outputs) = @_;
-    my $num_events = scalar keys %{%MSC_PARSER_EVENTS->{'event'}};
+    my $num_events = scalar keys(%MSC_PARSER_EVENTS{'event'});
     my $num_splits = ceil($num_events / $NUM_EVENTS_PER_IFRAME);
 
+	print "#events: $num_events num/frame: $NUM_EVENTS_PER_IFRAME #splits: $num_splits\n" if $debug;
     my $retstr = parser_process_outputs($logfile, $num_splits, @outputs);
     $id++ while $retstr =~ /\<output/g;
     return $retstr
